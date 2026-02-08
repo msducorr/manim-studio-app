@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Manim Studio</title>
+</head>
+<body>
+    <video id="bgVideo" autoplay muted src="./assets/3544663784_1924360051_223132457.mp4"></video>
+
+    <nav>
+        <div style="font-weight: 600; color: #ffffff;">Logo</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#started">Get Started</a></li>
+        </ul>
+    </nav>
+
+    <div class="content" id="content">
+        <div class="hero-content">
+            <div class="cta-buttons">
+                <button class="btn-primary" id="signupBtn">Sign Up</button>
+                <button id="loginBtn">Login</button>
+            </div>
+            <a href="#" class="learn-more-link">
+                Learn more
+                <span class="arrow">→</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Info Section -->
+    <section id="about">
+        <div class="info-container">
+            <div class="info-image">
+                <div class="parallax-image" id="parallaxImage">🚀</div>
+            </div>
+            <div class="info-text">
+                <h2>About Our App</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                </p>
+                <p>
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="faq-container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is this application about?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How do I get started?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum sed ut perspiciatis.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What are the pricing plans?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is there customer support?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I cancel my subscription?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login</h2>
+                <button class="modal-close" data-modal="loginModal">&times;</button>
+            </div>
+            <form id="loginForm" class="modal-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="form-submit">Login</button>
+                <p class="form-footer">Don't have an account? <a href="#" class="toggle-modal" data-target="signupModal">Sign up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sign Up</h2>
+                <button class="modal-close" data-modal="signupModal">&times;</button>
+            </div>
+            <form id="signupForm" class="modal-form">
+                <div class="form-group">
+                    <label for="signupFirstName">First Name</label>
+                    <input type="text" id="signupFirstName" placeholder="Enter your first name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupLastName">Last Name</label>
+                    <input type="text" id="signupLastName" placeholder="Enter your last name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="form-submit">Sign Up</button>
+                <p class="form-footer">Already have an account? <a href="#" class="toggle-modal" data-target="loginModal">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById("bgVideo");
+        const content = document.getElementById("content");
+        const parallaxImage = document.getElementById("parallaxImage");
+
+        // Trigger content animation when video ends
+        video.addEventListener("ended", () => {
+            content.classList.add("show");
+        });
+
+        // Parallax scrolling effect and fade out
+        window.addEventListener("scroll", () => {
+            const scrollY = window.scrollY;
+            const maxScroll = window.innerHeight;
+            
+            // Fade out video as user scrolls
+            const opacity = Math.max(0, 1 - (scrollY / maxScroll));
+            video.style.opacity = opacity;
+            
+            // Fade out content (sign up, login, learn more) with the video
+            content.style.opacity = opacity;
+            
+            // Parallax effect
+            if (parallaxImage) {
+                parallaxImage.style.transform = `translateY(${scrollY * 0.5}px)`;
+            }
+        });
+
+        // FAQ accordion functionality
+        const faqItems = document.querySelectorAll(".faq-item");
+        faqItems.forEach(item => {
+            const question = item.querySelector(".faq-question");
+            question.addEventListener("click", () => {
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove("active");
+                    }
+                });
+                // Toggle current item
+                item.classList.toggle("active");
+            });
+        });
+
+        // Modal functionality
+        const loginBtn = document.getElementById("loginBtn");
+        const signupBtn = document.getElementById("signupBtn");
+        const loginModal = document.getElementById("loginModal");
+        const signupModal = document.getElementById("signupModal");
+        const modalCloseButtons = document.querySelectorAll(".modal-close");
+        const toggleModalLinks = document.querySelectorAll(".toggle-modal");
+
+        // Open login modal
+        loginBtn.addEventListener("click", () => {
+            loginModal.classList.add("active");
+        });
+
+        // Open signup modal
+        signupBtn.addEventListener("click", () => {
+            signupModal.classList.add("active");
+        });
+
+        // Close modals
+        modalCloseButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const modalId = button.getAttribute("data-modal");
+                document.getElementById(modalId).classList.remove("active");
+            });
+        });
+
+        // Toggle between login and signup
+        toggleModalLinks.forEach(link => {
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute("data-target");
+                const currentModal = link.closest(".modal-overlay");
+                currentModal.classList.remove("active");
+                document.getElementById(targetId).classList.add("active");
+            });
+        });
+
+        // Close modal when clicking overlay
+        [loginModal, signupModal].forEach(modal => {
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove("active");
+                }
+            });
+        });
+
+        // Handle form submissions
+        document.getElementById("loginForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+            console.log("Login:", { email, password });
+            // Add your login logic here
+        });
+
+        document.getElementById("signupForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const firstName = document.getElementById("signupFirstName").value;
+            const lastName = document.getElementById("signupLastName").value;
+            const email = document.getElementById("signupEmail").value;
+            const password = document.getElementById("signupPassword").value;
+            const confirmPassword = document.getElementById("signupConfirmPassword").value;
+            
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return;
+            }
+            
+            console.log("Sign up:", { firstName, lastName, email, password });
+            // Add your signup logic here
+        });
+    </script>
+</body>
+</html>
