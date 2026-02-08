@@ -35,7 +35,7 @@
     <section id="about">
         <div class="info-container">
             <div class="info-image">
-                <div class="parallax-image" id="parallaxImage">🚀</div>
+                <div class="parallax-image" id="parallaxImage"></div>
             </div>
             <div class="info-text">
                 <h2>About Our App</h2>
@@ -112,13 +112,24 @@
                 <button class="modal-close" data-modal="loginModal">&times;</button>
             </div>
             <form id="loginForm" class="modal-form">
+                <div class="form-error-summary" id="loginErrorSummary"></div>
                 <div class="form-group">
                     <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                    <div class="input-group" id="loginEmailGroup">
+                        <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                        <span class="error-icon">✕</span>
+                        <span class="success-icon">✓</span>
+                        <span class="error-message"></span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    <div class="input-group" id="loginPasswordGroup">
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                        <span class="error-icon">✕</span>
+                        <span class="success-icon">✓</span>
+                        <span class="error-message"></span>
+                    </div>
                 </div>
                 <button type="submit" class="form-submit">Login</button>
                 <p class="form-footer">Don't have an account? <a href="#" class="toggle-modal" data-target="signupModal">Sign up</a></p>
@@ -134,6 +145,7 @@
                 <button class="modal-close" data-modal="signupModal">&times;</button>
             </div>
             <form id="signupForm" class="modal-form">
+                <div class="form-error-summary" id="signupErrorSummary"></div>
                 <div class="form-group">
                     <label for="signupFirstName">First Name</label>
                     <input type="text" id="signupFirstName" placeholder="Enter your first name" required>
@@ -144,21 +156,37 @@
                 </div>
                 <div class="form-group">
                     <label for="signupEmail">Email</label>
-                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                    <div class="input-group" id="signupEmailGroup">
+                        <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                        <span class="error-icon">✕</span>
+                        <span class="success-icon">✓</span>
+                        <span class="error-message"></span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                    <div class="input-group" id="signupPasswordGroup">
+                        <input type="password" id="signupPassword" placeholder="Create a password" required>
+                        <span class="error-icon">✕</span>
+                        <span class="success-icon">✓</span>
+                        <span class="error-message"></span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="signupConfirmPassword">Confirm Password</label>
-                    <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                    <div class="input-group" id="signupConfirmPasswordGroup">
+                        <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                        <span class="error-icon">✕</span>
+                        <span class="success-icon">✓</span>
+                        <span class="error-message"></span>
+                    </div>
                 </div>
                 <button type="submit" class="form-submit">Sign Up</button>
                 <p class="form-footer">Already have an account? <a href="#" class="toggle-modal" data-target="loginModal">Login</a></p>
             </form>
         </div>
     </div>
+        <script src="./src/main.js" type="module"></script>
 
     <script>
         const video = document.getElementById("bgVideo");
@@ -250,28 +278,115 @@
             });
         });
 
-        // Handle form submissions
+        // Email validation function
+        const validateEmail = (email) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || email.trim().length === 0) {
+                return { isValid: false, error: 'Email is required' };
+            }
+            if (!emailRegex.test(email)) {
+                return { isValid: false, error: 'Please enter a valid email address' };
+            }
+            return { isValid: true, error: null };
+        };
+
+        // Password validation function
+        const validatePassword = (password) => {
+            if (!password || password.length === 0) {
+                return { isValid: false, error: 'Password is required' };
+            }
+            if (password.length < 6) {
+                return { isValid: false, error: 'Password must be at least 6 characters long' };
+            }
+            return { isValid: true, error: null };
+        };
+
+        // Update input group styling and error display
+        const updateInputGroup = (inputId, groupId, isValid, errorMessage) => {
+            const group = document.getElementById(groupId);
+            const errorSpan = group.querySelector('.error-message');
+            
+            if (isValid) {
+                group.classList.remove('invalid');
+                group.classList.add('valid');
+                errorSpan.textContent = '';
+            } else {
+                group.classList.remove('valid');
+                group.classList.add('invalid');
+                errorSpan.textContent = errorMessage;
+            }
+        };
+
+        // Handle login form submission
         document.getElementById("loginForm").addEventListener("submit", (e) => {
             e.preventDefault();
+            
             const email = document.getElementById("loginEmail").value;
             const password = document.getElementById("loginPassword").value;
+            
+            const emailValidation = validateEmail(email);
+            const passwordValidation = validatePassword(password);
+            
+            // Update UI with validation results
+            updateInputGroup("loginEmail", "loginEmailGroup", emailValidation.isValid, emailValidation.error);
+            updateInputGroup("loginPassword", "loginPasswordGroup", passwordValidation.isValid, passwordValidation.error);
+            
+            // Show error summary if there are errors
+            const errorSummary = document.getElementById("loginErrorSummary");
+            if (!emailValidation.isValid || !passwordValidation.isValid) {
+                const errors = [];
+                if (!emailValidation.isValid) errors.push(emailValidation.error);
+                if (!passwordValidation.isValid) errors.push(passwordValidation.error);
+                
+                errorSummary.innerHTML = '<ul>' + errors.map(err => `<li>${err}</li>`).join('') + '</ul>';
+                errorSummary.classList.add('show');
+                return;
+            }
+            
+            errorSummary.classList.remove('show');
             console.log("Login:", { email, password });
             // Add your login logic here
         });
 
+        // Handle signup form submission
         document.getElementById("signupForm").addEventListener("submit", (e) => {
             e.preventDefault();
+            
             const firstName = document.getElementById("signupFirstName").value;
             const lastName = document.getElementById("signupLastName").value;
             const email = document.getElementById("signupEmail").value;
             const password = document.getElementById("signupPassword").value;
             const confirmPassword = document.getElementById("signupConfirmPassword").value;
             
-            if (password !== confirmPassword) {
-                alert("Passwords do not match");
+            const emailValidation = validateEmail(email);
+            const passwordValidation = validatePassword(password);
+            
+            // Update UI with validation results
+            updateInputGroup("signupEmail", "signupEmailGroup", emailValidation.isValid, emailValidation.error);
+            
+            let passwordError = null;
+            if (!passwordValidation.isValid) {
+                passwordError = passwordValidation.error;
+            } else if (password !== confirmPassword) {
+                passwordError = 'Passwords do not match';
+            }
+            
+            updateInputGroup("signupPassword", "signupPasswordGroup", !passwordError, passwordError);
+            updateInputGroup("signupConfirmPassword", "signupConfirmPasswordGroup", !passwordError, passwordError);
+            
+            // Show error summary if there are errors
+            const errorSummary = document.getElementById("signupErrorSummary");
+            if (!emailValidation.isValid || passwordError) {
+                const errors = [];
+                if (!emailValidation.isValid) errors.push(emailValidation.error);
+                if (passwordError) errors.push(passwordError);
+                
+                errorSummary.innerHTML = '<ul>' + errors.map(err => `<li>${err}</li>`).join('') + '</ul>';
+                errorSummary.classList.add('show');
                 return;
             }
             
+            errorSummary.classList.remove('show');
             console.log("Sign up:", { firstName, lastName, email, password });
             // Add your signup logic here
         });

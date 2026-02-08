@@ -1,23 +1,19 @@
-import { auth } from './config/firebase.js';
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// inital user login check 
+import { auth } from "./config/firebase.js";
 
-const welcomeMessageEl = document.querySelector('.users-name');
-
-onAuthStateChanged(auth, user => {
-  if (!user) {
-    console.log("No user is signed in.");
-    // redirect to login page
-    window.location.href = './index.html';
-    return;
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("User is signed in:", user);
+  } else {
+    console.log("No user is signed in, redirecting...");
+    window.location.href = "/index.html";
   }
-
-  // logged in
-  const uid = user.uid;
-  const email = user.email;
-  console.log(auth.currentUser.email + " is signed in with UID: " + uid);
-  
-  // update welcome message with user email
-  welcomeMessageEl.innerHTML = email;
 });
+
