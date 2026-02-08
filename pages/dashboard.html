@@ -3,11 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.firebaseio.com https://*.googleapis.com;">
-    <title>Document</title>
+    <title>Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #fafafa;
+            color: #09090b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #09090b;
+                color: #fafafa;
+            }
+        }
+
+        .dashboard-container {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .header {
+            margin-bottom: 48px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #09090b;
+            letter-spacing: -0.5px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .header h1 {
+                color: #fafafa;
+            }
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #71717a;
+            font-weight: 500;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .header p {
+                color: #a1a1a1;
+            }
+        }
+
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #e4e4e7;
+            border-radius: 8px;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 150ms ease-in-out;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            position: relative;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .card {
+                background-color: #18181b;
+                border-color: #27272a;
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        .card:hover {
+            border-color: #d4d4d8;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .card:hover {
+                border-color: #3f3f46;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        .plus-icon {
+            font-size: 32px;
+            color: #d4d4d8;
+            font-weight: 300;
+            transition: all 150ms ease-in-out;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .plus-icon {
+                color: #52525b;
+            }
+        }
+
+        .card:hover .plus-icon {
+            color: #a1a1a1;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .card:hover .plus-icon {
+                color: #71717a;
+            }
+        }
+
+        .card-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #a1a1a1;
+            transition: all 150ms ease-in-out;
+            margin-top: 8px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .card-text {
+                color: #71717a;
+            }
+        }
+
+        .card-container:hover .card-text {
+            color: #71717a;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .card-container:hover .card-text {
+                color: #a1a1a1;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome back<span><h1 class="users-name"></h1></span></h1>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>Projects</h1>
+            <p>Create and manage your animation projects</p>
+        </div>
+
+        <div class="card-container">
+            <div class="card">
+                <div class="plus-icon">+</div>
+            </div>
+            <div class="card-text">Create new project</div>
+        </div>
+    </div>
 
     <script src="../src/dashboard.js" type="module"></script>
 </body>
